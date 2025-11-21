@@ -1,4 +1,5 @@
 import MyNavbar from "./MyNavbar"
+import MyFooter from "./MyFooter"
 
 const EditProfile = () => {
   return (
@@ -101,6 +102,7 @@ const EditProfile = () => {
           </div>
         </div>
       </main>
+      <MyFooter />
     </section>
   )
 }

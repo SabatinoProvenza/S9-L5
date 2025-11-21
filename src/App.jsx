@@ -5,6 +5,7 @@ import Header from "./components/Header"
 import MoviesCarousel from "./components/MoviesCarousel"
 import MyFooter from "./components/MyFooter"
 import EditProfile from "./components/EditProfile"
+import AccountSection from "./components/AccountSection"
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
       <MyFooter />
 
       <EditProfile />
+
+      <AccountSection />
     </>
   )
 }
