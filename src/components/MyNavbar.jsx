@@ -2,7 +2,7 @@ import { Navbar, Nav, Container } from "react-bootstrap"
 
 const MyNavbar = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="md" className="text-light">
+    <Navbar bg="black" variant="dark" expand="md" className="text-light">
       <Container fluid className="px-2">
         <Navbar.Brand href="#">
           <img src="public\netflix_logo.png" alt="Netflix Logo" width="90" />

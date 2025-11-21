@@ -1,6 +1,6 @@
 import { Component } from "react"
 import Carousel from "react-bootstrap/Carousel"
-import { Container, Row, Col } from "react-bootstrap"
+import { Container, Row, Col, Spinner } from "react-bootstrap"
 
 const API_KEY = "6772201a"
 
@@ -43,7 +43,12 @@ class TrendingCarousel extends Component {
   render() {
     const { movies, isLoading } = this.state
 
-    if (isLoading) return <p className="text-light">Caricamento...</p>
+    if (isLoading)
+      return (
+        <div className="min-vh-100 d-flex align-items-center justify-content-center bg-dark">
+          <Spinner animation="border" variant="light" />
+        </div>
+      )
 
     const validMovies = movies.filter(
       (movie) => movie.Poster && movie.Poster !== "N/A"
@@ -56,7 +61,7 @@ class TrendingCarousel extends Component {
         <Container className="px-4 my-4">
           <h3 className="text-light">{this.props.title}</h3>
 
-          <Carousel className="px-5 my-5">
+          <Carousel className=" my-5">
             {slides.map((group, index) => (
               <Carousel.Item key={index}>
                 <Row className="g-2">

@@ -12,7 +12,7 @@ const Header = () => {
             <Dropdown>
               <Dropdown.Toggle
                 variant="dark"
-                className="border-secondary rounded-0"
+                className="border-secondary rounded-0 bg-black"
               >
                 Genres
               </Dropdown.Toggle>
