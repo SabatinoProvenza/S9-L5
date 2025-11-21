@@ -90,7 +90,7 @@ const AccountSection = () => {
           </div>
 
           <div className="col-12 col-md-4 small fw-semibold">
-            Premium{" "}
+            Premium
             <span className="badge bg-light text-dark border">ULTRA HD</span>
           </div>
 

@@ -17,9 +17,9 @@ function App() {
       <MoviesCarousel title="Film su Harry Potter" query="harry potter" />
       <MyFooter />
 
-      <EditProfile />
+      {/* <EditProfile /> */}
 
-      <AccountSection />
+      {/* <AccountSection /> */}
     </>
   )
 }
