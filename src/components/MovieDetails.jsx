@@ -4,9 +4,13 @@ import { Container, Row, Col, Spinner } from "react-bootstrap"
 
 const API_KEY = "6772201a"
 
+const token =
+  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTBkYWQzY2Y0YmQ0NzAwMTU4NWIxZDciLCJpYXQiOjE3NjQxNjk1ODksImV4cCI6MTc2NTM3OTE4OX0.4Xglzmq8-hJGUmFr-Kct_J10Mo995ydYDSVX7nNMt8o"
+
 const MovieDetails = () => {
   const params = useParams()
   const [movie, setMovie] = useState(null)
+  const [comments, setComments] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -18,6 +22,18 @@ const MovieDetails = () => {
         const data = await response.json()
 
         setMovie(data)
+        //  fetch commenti
+        const commentsResponse = await fetch(
+          `https://striveschool-api.herokuapp.com/api/comments/${params.movieId}`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        )
+
+        const commentsData = await commentsResponse.json()
+        setComments(commentsData)
         setIsLoading(false)
       } catch (error) {
         console.log("Errore:", error)
@@ -35,18 +51,54 @@ const MovieDetails = () => {
     )
 
   return (
-    <Container className="text-light text-center py-5">
-      <Row>
-        <Col>
-          <img src={movie.Poster} alt={movie.Title} />
+    <Container className="text-light py-5">
+      <Row className="align-items-start">
+        {/* POSTER */}
+        <Col md={4}>
+          <img
+            src={movie.Poster}
+            alt={movie.Title}
+            className="img-fluid rounded shadow"
+          />
         </Col>
-      </Row>
-      <Row>
-        <Col>
-          <h1>{movie.Title}</h1>
-          <h3>Anno:</h3> {movie.Year}
-          <h3>Genere:</h3> {movie.Genre}
-          <h3>Trama:</h3> {movie.Plot}
+
+        {/* DETTAGLI + COMMENTI */}
+        <Col md={8}>
+          <h1 className="mb-3">{movie.Title}</h1>
+
+          <p>
+            <strong>Anno:</strong> {movie.Year}
+          </p>
+          <p>
+            <strong>Genere:</strong> {movie.Genre}
+          </p>
+          <p>
+            <strong>Durata:</strong> {movie.Runtime}
+          </p>
+          <p>
+            <strong>Trama:</strong> {movie.Plot}
+          </p>
+
+          <hr className="my-4" />
+
+          <h3>Commenti</h3>
+
+          {comments.length === 0 ? (
+            <p className="text-secondary">Nessun commento disponibile</p>
+          ) : (
+            comments.map((comment) => (
+              <div
+                key={comment._id}
+                className="bg-secondary bg-opacity-10 p-3 rounded mb-3"
+              >
+                <p className="mb-1">
+                  <strong>{comment.author}</strong>
+                </p>
+                <p className="mb-1">{comment.comment}</p>
+                <small className="text-light">Voto: {comment.rate}/5</small>
+              </div>
+            ))
+          )}
         </Col>
       </Row>
     </Container>
