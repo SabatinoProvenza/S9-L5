@@ -1,19 +1,24 @@
 import { Navbar, Nav, Container } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 const MyNavbar = () => {
   return (
     <Navbar bg="black" variant="dark" expand="md" className="text-light">
       <Container fluid className="px-2">
         <Navbar.Brand href="#">
-          <img src="public\netflix_logo.png" alt="Netflix Logo" width="90" />
+          <img src="/netflix_logo.png" alt="Netflix Logo" width="90" />
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbarNav" />
 
         <Navbar.Collapse id="navbarNav">
           <Nav className="me-auto">
-            <Nav.Link href="#">Home</Nav.Link>
-            <Nav.Link href="#">TV Shows</Nav.Link>
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+            <Link to="/tv-shows" className="nav-link">
+              Tv Shows
+            </Link>
             <Nav.Link href="#">Movies</Nav.Link>
             <Nav.Link href="#">Recently Added</Nav.Link>
             <Nav.Link href="#">My List</Nav.Link>
@@ -23,7 +28,7 @@ const MyNavbar = () => {
             <i className="bi bi-search"></i>
             <span>KIDS</span>
             <i className="bi bi-bell"></i>
-            <img src="public\kids_icon.png" width="32" alt="profile" />
+            <img src="/kids_icon.png" width="32" alt="profile" />
           </div>
         </Navbar.Collapse>
       </Container>

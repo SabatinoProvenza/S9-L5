@@ -1,6 +1,7 @@
 import { Component } from "react"
 import Carousel from "react-bootstrap/Carousel"
 import { Container, Row, Col, Spinner } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 const API_KEY = "6772201a"
 
@@ -79,12 +80,14 @@ class TrendingCarousel extends Component {
                           : ""
                       }
                     >
-                      <img
-                        src={movie.Poster}
-                        className="d-block w-100 rounded"
-                        alt={movie.Title}
-                        style={{ height: "18rem", objectFit: "cover" }}
-                      />
+                      <Link to={`/movie-details/${movie.imdbID}`}>
+                        <img
+                          src={movie.Poster}
+                          className="d-block w-100 rounded"
+                          alt={movie.Title}
+                          style={{ height: "18rem", objectFit: "cover" }}
+                        />
+                      </Link>
                     </Col>
                   ))}
                 </Row>
